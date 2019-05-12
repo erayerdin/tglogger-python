@@ -1,0 +1,35 @@
+site_name: tglogger
+site_author: Eray Erdin
+site_url: https://github.com/erayerdin/tglogger
+repo_name: erayerdin/tglogger
+repo_url: https://github.com/erayerdin/tglogger
+
+theme:
+  name: material
+  palette:
+    primary: cyan
+    accent: cyan
+
+extra:
+  social:
+    - type: github
+      link: https://github.com/erayerdin
+    - type: twitter
+      link: https://twitter.com/_erayerdin
+    - type: linkedin
+      link: https://linkedin.com/in/erayerdin
+    - type: telegram
+      link: https://t.me/erayerdin
+  disqus: erayerdin
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+  - footnotes
+
+nav:
+    - Home: index.md
+    - Getting Started: getting-started.md
