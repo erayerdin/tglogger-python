@@ -5,56 +5,6 @@ import pytest
 from tglogger import formatter
 
 
-class TestMessageLineTemplate:
-    def test_is_list_or_tuple(self):
-        assert isinstance(
-            formatter.MESSAGE_LINE_TEMPLATES, list
-        ) or isinstance(formatter.MESSAGE_LINE_TEMPLATES, tuple)
-
-    def test_item_banner_hashtag(self):
-        assert "#tglogger" in formatter.MESSAGE_LINE_TEMPLATES
-
-    def test_item_logger_name(self):
-        assert (
-            "*Logger Name:* {logger_name}" in formatter.MESSAGE_LINE_TEMPLATES
-        )
-
-    def test_item_system_date(self):
-        assert (
-            "*System Date:* {system_date}" in formatter.MESSAGE_LINE_TEMPLATES
-        )
-
-    def test_item_level(self):
-        assert "*Level:* #{level_name}" in formatter.MESSAGE_LINE_TEMPLATES
-
-    def test_item_path_and_line(self):
-        assert (
-            "*Path and Line:* _{path}_:{lineno}"
-            in formatter.MESSAGE_LINE_TEMPLATES
-        )
-
-    def test_item_function_or_method(self):
-        assert (
-            "*Function/Method:* _{func_name}_"
-            in formatter.MESSAGE_LINE_TEMPLATES
-        )
-
-    def test_item_thread(self):
-        assert (
-            "*Thread ID and Name:* \[{thread_id}] {thread_name}"
-            in formatter.MESSAGE_LINE_TEMPLATES
-        )
-
-    def test_item_process(self):
-        assert (
-            "*Process ID and Name:* \[{process_id}] {process_name}"
-            in formatter.MESSAGE_LINE_TEMPLATES
-        )
-
-    def test_item_message(self):
-        assert "\n*Message*\n{message}\n" in formatter.MESSAGE_LINE_TEMPLATES
-
-
 class TestReformatMarkdownSafe:
     def test_replace_underscore(self):
         example = "foo_bar_baz"
