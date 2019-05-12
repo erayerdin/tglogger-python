@@ -84,6 +84,10 @@ logger.error("foo")
 
 ![Screenshot](img/message_example.jpeg)
 
+!!! tip
+    You can set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_RECEIVER` environment
+    variables instead of setting `bot_token` and `receiver`.
+
 [^1]:
     You can change level offset by passing `level` to `TelegramHandler`
     while you initialize it.
