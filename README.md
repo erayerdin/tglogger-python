@@ -18,11 +18,11 @@ Telegram chat via a bot.
 
 |              | Build | Coverage |
 |--------------|-------|----------|
-| **Master**   | [![Travis (.com) master](https://img.shields.io/travis/com/erayerdin/tglogger/master.svg?style=flat-square&logo=travis&logoColor=white)][travis_url] | [![](https://img.shields.io/coveralls/github/erayerdin/tglogger/master.svg?logo=star&logoColor=white&style=flat-square)][coveralls_url] |
-| **Development** | [![Travis (.com) development](https://img.shields.io/travis/com/erayerdin/tglogger/development.svg?style=flat-square&logo=travis&logoColor=white)][travis_url] | [![](https://img.shields.io/coveralls/github/erayerdin/tglogger/development.svg?logo=star&logoColor=white&style=flat-square)][coveralls_url] |
+| **Master**   | [![Travis (.com) master](https://img.shields.io/travis/com/erayerdin/tglogger/master.svg?style=flat-square&logo=travis&logoColor=white)][travis_url] | [![Codecov (master)](https://img.shields.io/codecov/c/github/erayerdin/tglogger/master.svg?style=flat-square)][covecov_url] |
+| **Development** | [![Travis (.com) development](https://img.shields.io/travis/com/erayerdin/tglogger/development.svg?style=flat-square&logo=travis&logoColor=white)][travis_url] | [![Codecov (development)](https://img.shields.io/codecov/c/github/erayerdin/tglogger/master.svg?style=flat-square)][covecov_url] |
 
 [travis_url]: https://travis-ci.com/erayerdin/tglogger
-[coveralls_url]: https://coveralls.io/github/erayerdin/tglogger
+[covecov_url]: https://codecov.io/gh/erayerdin/tglogger
 
 ## Installing
 
