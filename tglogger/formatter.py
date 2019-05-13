@@ -40,6 +40,10 @@ class TelegramFormatter(logging.Formatter):
             from django import settings
 
             tz = getattr(settings, "TIME_ZONE", "No Timezone")
+            use_tz = getattr(settings, "USE_TZ", False)
+
+            if not use_tz:
+                tz = "No Timezone"
 
             data["system_date"] = "{now} ({zone})".format(
                 now=datetime.now(), zone=tz
