@@ -73,7 +73,7 @@ jobs:
     install:
     - pip install -r requirements.txt
     - pip install -r dev.requirements.txt
-    - pip install tgcli "django>=1.11<2.0" pytest-django --upgrade
+    - pip install tgcli "django>=1.11<2.0" --upgrade
     script:
     - pytest --ds=django_project.settings
     after_success:
@@ -86,7 +86,7 @@ jobs:
     install:
     - pip install -r requirements.txt
     - pip install -r dev.requirements.txt
-    - pip install tgcli "django>=2.0<2.1" pytest-django --upgrade
+    - pip install tgcli "django>=2.0<2.1" --upgrade
     script:
     - pytest --ds=django_project.settings
     after_success:
@@ -99,50 +99,26 @@ jobs:
     install:
     - pip install -r requirements.txt
     - pip install -r dev.requirements.txt
-    - pip install tgcli "django>=2.1<2.2" pytest-django --upgrade
+    - pip install tgcli "django>=2.1<2.2" --upgrade
     script:
     - pytest --ds=django_project.settings
     after_success:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 2.1."
     after_failure:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Django 2.1. [See](https://travis-ci.com/erayerdin/tglogger)."
-  - stage: Testing with Django
-    python: '3.5'
-    install:
-    - pip install -r requirements.txt
-    - pip install -r dev.requirements.txt
-    - pip install tgcli "django>=2.1<2.2" pytest-django --upgrade
-    script:
-    - pytest --ds=django_project.settings
-    after_success:
-    - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 2.1."
-    after_failure:
-    - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Python 2.1. [See](https://travis-ci.com/erayerdin/tglogger)."
 # 2.2 #
   - stage: Testing with Django
     python: '3.5'
     install:
     - pip install -r requirements.txt
     - pip install -r dev.requirements.txt
-    - pip install tgcli "django>=2.2<2.3" pytest-django --upgrade
+    - pip install tgcli "django>=2.2<2.3" --upgrade
     script:
     - pytest --ds=django_project.settings
     after_success:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 2.2."
     after_failure:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Django 2.2. [See](https://travis-ci.com/erayerdin/tglogger)."
-  - stage: Testing with Django
-    python: '3.5'
-    install:
-    - pip install -r requirements.txt
-    - pip install -r dev.requirements.txt
-    - pip install tgcli "django>=2.2<2.3" pytest-django --upgrade
-    script:
-    - pytest --ds=django_project.settings
-    after_success:
-    - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 2.1."
-    after_failure:
-    - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Python 2.1. [See](https://travis-ci.com/erayerdin/tglogger)."
 
 ##############
 # Deployment #
