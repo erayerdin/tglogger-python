@@ -4,6 +4,9 @@ dist: xenial
 
 jobs:
   include:
+#########
+# Style #
+#########
   - stage: Style Checking
     python: '3.7'
     install:
@@ -17,6 +20,11 @@ jobs:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "🥂 Style check passed for \`tglogger\`."
     after_failure:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "✂️💥 Style checking failed for \`tglogger\`. [See](https://travis-ci.com/erayerdin/tglogger)."
+
+##########
+# Python #
+##########
+# 3.5 #
   - stage: Testing
     python: '3.5'
     install:
@@ -29,6 +37,7 @@ jobs:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Python 3.5."
     after_failure:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Python 3.5. [See](https://travis-ci.com/erayerdin/tglogger)."
+# 3.6 #
   - stage: Testing
     python: '3.6'
     install:
@@ -41,6 +50,7 @@ jobs:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Python3.6."
     after_failure:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Python 3.6. [See](https://travis-ci.com/erayerdin/tglogger)."
+# 3.7 #
   - stage: Testing
     python: '3.7'
     install:
@@ -53,6 +63,66 @@ jobs:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Python 3.7."
     after_failure:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Python 3.7. [See](https://travis-ci.com/erayerdin/tglogger)."
+
+##########
+# Django #
+##########
+# 1.11 #
+  - stage: Testing with Django
+    python: '3.5'
+    install:
+    - pip install -r requirements.txt
+    - pip install -r dev.requirements.txt
+    - pip install tgcli "django>=1.11<2.0" --upgrade
+    script:
+    - pytest --ds=django_project.settings
+    after_success:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 1.11."
+    after_failure:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Django 1.11. [See](https://travis-ci.com/erayerdin/tglogger)."
+# 2.0 #
+  - stage: Testing with Django
+    python: '3.5'
+    install:
+    - pip install -r requirements.txt
+    - pip install -r dev.requirements.txt
+    - pip install tgcli "django>=2.0<2.1" --upgrade
+    script:
+    - pytest --ds=django_project.settings
+    after_success:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 2.0."
+    after_failure:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Django 2.0. [See](https://travis-ci.com/erayerdin/tglogger)."
+# 2.1 #
+  - stage: Testing with Django
+    python: '3.5'
+    install:
+    - pip install -r requirements.txt
+    - pip install -r dev.requirements.txt
+    - pip install tgcli "django>=2.1<2.2" --upgrade
+    script:
+    - pytest --ds=django_project.settings
+    after_success:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 2.1."
+    after_failure:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Django 2.1. [See](https://travis-ci.com/erayerdin/tglogger)."
+# 2.2 #
+  - stage: Testing with Django
+    python: '3.5'
+    install:
+    - pip install -r requirements.txt
+    - pip install -r dev.requirements.txt
+    - pip install tgcli "django>=2.2<2.3" --upgrade
+    script:
+    - pytest --ds=django_project.settings
+    after_success:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "🍻 \`tglogger\` works in Django 2.2."
+    after_failure:
+    - tgcli bot send -r $TELEGRAM_RECEIVER message "📦💥 \`tglogger\` failed in Django 2.2. [See](https://travis-ci.com/erayerdin/tglogger)."
+
+##############
+# Deployment #
+##############
   - stage: Covering / Deploy
     python: '3.7'
     install:

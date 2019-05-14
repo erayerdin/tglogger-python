@@ -18,7 +18,7 @@ class TelegramFormatter(logging.Formatter):
         """
     #tglogger
     *Logger Name:* {logger_name}
-    *System Date:* {system_date}
+    *System Date:* {system_date} ({zone})
     *Level:* #{level_name}
     *Path and Line:* _{path}_:{lineno}
     *Function/Method:* _{func_name}_
@@ -28,7 +28,7 @@ class TelegramFormatter(logging.Formatter):
     *Message*
     {message}
     """
-    )
+    ).strip()
 
     def format(self, record: logging.LogRecord):
         data = dict()
@@ -36,8 +36,8 @@ class TelegramFormatter(logging.Formatter):
         data["logger_name"] = record.name
 
         try:
-            from django import timezone as datetime
-            from django import settings
+            from django.utils import timezone
+            from django.conf import settings
 
             tz = getattr(settings, "TIME_ZONE", "No Timezone")
             use_tz = getattr(settings, "USE_TZ", False)
@@ -45,13 +45,13 @@ class TelegramFormatter(logging.Formatter):
             if not use_tz:
                 tz = "No Timezone"
 
-            data["system_date"] = "{now} ({zone})".format(
-                now=datetime.now(), zone=tz
-            )
+            data["system_date"] = timezone.now()
+            data["zone"] = tz
         except ImportError:
             from datetime import datetime
 
             data["system_date"] = datetime.now()
+            data["zone"] = "No Timezone"
 
         data["level_name"] = record.levelname.lower()
         data["path"] = reformat_markdown_safe(record.pathname)
