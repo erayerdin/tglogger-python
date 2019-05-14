@@ -4,6 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/status/tglogger.svg?style=flat-square&logo=python&logoColor=white)][pypi_url]
 [![PyPI](https://img.shields.io/pypi/dm/tglogger.svg?style=flat-square&logo=python&logoColor=white)][pypi_url]
 [![PyPI](https://img.shields.io/pypi/pyversions/tglogger.svg?style=flat-square&logo=python&logoColor=white)][pypi_url]
+[![PyPI - Django Version](https://img.shields.io/pypi/djversions/tglogger.svg?style=flat-square)][pypi_url]
 [![PyPI](https://img.shields.io/pypi/l/tglogger.svg?style=flat-square)][pypi_url]
 [![](https://img.shields.io/readthedocs/tglogger.svg?style=flat-square)](https://tglogger.readthedocs.io/en/latest/)
 [![Telegram](https://img.shields.io/badge/telegram-%40erayerdin-%2332afed.svg?style=flat-square&logo=telegram&logoColor=white)](https://t.me/erayerdin)
