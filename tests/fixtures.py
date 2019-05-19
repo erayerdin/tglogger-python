@@ -11,37 +11,11 @@ import tglogger.request
 
 
 @pytest.fixture
-def mock_adapter() -> requests_mock.Adapter:
-    return requests_mock.Adapter()
-
-
-@pytest.fixture
-def bot_session(mock_adapter) -> tglogger.request.BotSession:
-    session = tglogger.request.BotSession("0")
-    session.mount("mock", mock_adapter)
-    session._is_mocked = True
-    return session
-
-
-@pytest.fixture
-def bot_request_factory(bot_session) -> callable:
-    def factory(method_name: str) -> tglogger.request.BotRequest:
-        return tglogger.request.BotRequest(bot_session, method_name)
-
-    return factory
-
-
-@pytest.fixture
-def bot_send_message_request(
-    bot_session
-) -> tglogger.request.SendMessageRequest:
-    return tglogger.request.SendMessageRequest(bot_session, 1, "foo")
-
-
-@pytest.fixture
-def request_body_factory() -> callable:
-    def factory(request: requests_mock.request.requests.Request) -> dict:
-        return json.loads(request.body.decode("utf-8"))
+def read_test_resource(request):
+    def factory(file_name: str, mode="r"):
+        file = open("tests/resources/{}".format(file_name), mode)
+        request.addfinalizer(lambda: file.close())
+        return file
 
     return factory
 

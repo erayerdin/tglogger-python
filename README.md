@@ -45,7 +45,7 @@ Assuming you have a logger instance:
 logger = logging.getLogger(__name__)
 ```
 
-You need to have an instance of `TelegramHandler` handler
+You need to have an instance of `TelegramHandler` and
 `TelegramFormatter`.
 
 ```python
@@ -66,7 +66,7 @@ to the chat you have defined with `receiver` by the bot that you
 have defined by `bot_token`.
 
 ```python
-logger.error("foo")  # you will receiver message by your bot
+logger.error("foo")  # you will receive a message by your bot
 ```
 
 ## Documentation

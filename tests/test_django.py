@@ -19,7 +19,6 @@ def formatter_message_factory(
 
         log_record = log_record_factory()
         message = telegram_formatter.format(log_record)
-        print(message)
         return message
 
     return factory
