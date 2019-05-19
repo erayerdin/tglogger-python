@@ -11,13 +11,9 @@ class TelegramHandler(logging.Handler):
         bot_token: str = os.environ["TELEGRAM_BOT_TOKEN"],
         receiver: str = os.environ["TELEGRAM_RECEIVER"],
     ):
-        self._bot_token = bot_token
-        self._receiver = receiver
+        self.bot_token = bot_token
+        self.receiver = receiver
         super().__init__(level)
 
     def emit(self, record):
-        session = request.BotSession(token=self._bot_token)
-        req = request.SendMessageRequest(
-            session, self._receiver, self.format(record)
-        )
-        return session.send(req)
+        return request.send_log(self, record, self.receiver)

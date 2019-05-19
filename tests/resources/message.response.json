@@ -1,0 +1,13 @@
+{
+    "ok": true,
+    "result": {
+        "message_id": 1,
+        "from": {
+            "id": 1,
+            "is_bot": true,
+            "username": "foobot"
+        },
+        "date": 1558047713,
+        "chat": 1
+    }
+}
