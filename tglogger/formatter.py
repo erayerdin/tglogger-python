@@ -1,6 +1,7 @@
 # todo - 2 class doc
 
 import logging
+import os
 from textwrap import dedent
 
 
@@ -35,7 +36,7 @@ class TelegramFormatter(logging.Formatter):
 
         data["logger_name"] = record.name
 
-        try:
+        if os.environ.get("DJANGO_SETTINGS_MODULE", None):
             from django.utils import timezone
             from django.conf import settings
 
@@ -47,7 +48,7 @@ class TelegramFormatter(logging.Formatter):
 
             data["system_date"] = timezone.now()
             data["zone"] = tz
-        except ImportError:
+        else:
             from datetime import datetime
 
             data["system_date"] = datetime.now()
