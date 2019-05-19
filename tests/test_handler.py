@@ -15,5 +15,5 @@ class TestTelegramHandler:
         responses = telegram_handler.emit(log_record)
         assert isinstance(responses, dict)
 
-        for values in responses.values():
-            assert isinstance(values, requests.Response)
+        for value in responses.values():
+            assert isinstance(value, requests.Response) or value is None
