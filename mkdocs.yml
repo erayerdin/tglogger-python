@@ -34,3 +34,4 @@ nav:
     - Home: index.md
     - Getting Started: getting-started.md
     - Django Integration: django.md
+    - Limitations: limitations.md
