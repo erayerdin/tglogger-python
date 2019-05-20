@@ -1,8 +1,5 @@
 import logging
-import tempfile
-import traceback
 import typing
-import uuid
 
 import requests
 
@@ -66,12 +63,8 @@ def send_log(
         },
     )
 
-    stack_trace_response = _send_stack_trace(
-        generic_info_response, handler, record, chat_id
-    )
-
     return {
         "generic_info_response": generic_info_response,
-        "stack_trace_response": stack_trace_response,
+        "stack_trace_response": None,
         "django_settings_response": None,
     }
