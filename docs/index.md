@@ -20,6 +20,7 @@ records to a Telegram chat.
  - In which file and line the log has been recorded
  - Under which function or method the log has been recorded
  - Info about thread and process
+ - Sending stack trace as *a file*
 
 ## License
 
