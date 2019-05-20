@@ -28,11 +28,23 @@ def send_log_responses(
         text=read_test_resource("message.response.json").read(),
     )
 
-    exception = Exception("foo")
-    log_record = log_record_factory(
-        exc_info=(Exception, exception, exception.__traceback__)
-    )
+    log_record = log_record_factory()
     return tglogger.request.send_log(telegram_handler, log_record, 1)
+
+
+@pytest.fixture
+def generic_info_response(send_log_responses):
+    return send_log_responses["generic_info_response"]
+
+
+@pytest.fixture
+def generic_info_request(generic_info_response):
+    return generic_info_response.request
+
+
+@pytest.fixture
+def generic_info_request_body(generic_info_request):
+    return parse_qs(generic_info_request.body)
 
 
 class TestSendLogReturn:
@@ -63,21 +75,6 @@ class TestSendLogReturn:
         assert "django_settings_response" in send_log_responses
 
 
-@pytest.fixture
-def generic_info_response(send_log_responses):
-    return send_log_responses["generic_info_response"]
-
-
-@pytest.fixture
-def generic_info_request(generic_info_response):
-    return generic_info_response.request
-
-
-@pytest.fixture
-def generic_info_request_body(generic_info_request):
-    return parse_qs(generic_info_request.body)
-
-
 class TestSendLogGenericInfoRequest:
     def test_body_chat_id(self, generic_info_request_body):
         assert generic_info_request_body["chat_id"][0] == "1"
@@ -87,32 +84,3 @@ class TestSendLogGenericInfoRequest:
 
     def test_body_text(self, generic_info_request_body):
         assert "text" in generic_info_request_body
-
-
-@pytest.fixture
-def stack_trace_response(send_log_responses):
-    return send_log_responses["stack_trace_response"]
-
-
-@pytest.fixture
-def stack_trace_request(stack_trace_response):
-    return stack_trace_response.request
-
-
-@pytest.fixture
-def stack_trace_request_body(stack_trace_request):
-    return stack_trace_request.body
-
-
-class TestSendLogStackTraceRequest:
-    def test_body_chat_id(self, stack_trace_request_body):
-        assert b'name="chat_id"' in stack_trace_request_body
-
-    def test_body_parse_mode(self, stack_trace_request_body):
-        assert b'name="parse_mode"' in stack_trace_request_body
-
-    def test_body_document(self, stack_trace_request_body):
-        assert b'name="document"' in stack_trace_request_body
-
-    def test_body_reply_to_message_id(self, stack_trace_request_body):
-        assert b'name="reply_to_message_id"' in stack_trace_request_body

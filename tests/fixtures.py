@@ -37,7 +37,7 @@ def log_record_factory(
             lineno=kwargs.get("lineno", 1),
             msg=kwargs.get("msg", "An error occured."),
             args=kwargs.get("args", ()),
-            exc_info=kwargs.get("exc_info", None),
+            exc_info=(None, None, None),
             func=kwargs.get("func", "foo_bar_baz"),
             sinfo="An error occured in whatever.",
         )
