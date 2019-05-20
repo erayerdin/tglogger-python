@@ -1,11 +1,11 @@
-import importlib.util
+import os
 import re
 
 import pytest
 
 pytestmark = pytest.mark.skipIf(
-    importlib.util.find_spec("django") is None,
-    "Django does not exist in the environment.",
+    os.environ.get("DJANGO_SETTINGS_MODULE", None) is None,
+    reason="Django does not exist in the environment.",
 )
 
 
