@@ -37,5 +37,7 @@ The table below can give you idea in what amount you can send logs *theoreticall
 
 | | per minute | per hour | per day | per week | per month (30 days) |
 |---|---|---|---|---|---|
-| **individual** | 1.800 | 108.000 | 2.592.000 | 18.144.000 | 544.320.000 |
-| **group**      | 20 | 1.200 | 28.800 | 201.600 | 6.048.000 |
+| **individual** (only log)       | 1.800 | 108.000 | 2.592.000 | 18.144.000 | 544.320.000 |
+| **individual** (log+stacktrace) | 900 | 54.000 | 1.296.000 | 9.072.000 | 272.160.000 |
+| **group** (only log)            | 20 | 1.200 | 28.800 | 201.600 | 6.048.000 |
+| **group** (log+stacktrace)      | 10 | 600 | 14.400 | 100.800 | 3.024.000 |
