@@ -58,6 +58,8 @@ You can get chat id from `update.message.chat.id` path of any JSON object.
 
 ## Usage
 
+### Regular Logs
+
 !!! warning
     It is assumed that you have already initialized a `Logger` instance called
     `logger`.
@@ -82,7 +84,7 @@ After these steps, any log above `ERROR` will be sent to target chat[^1].
 logger.error("foo")
 ```
 
-![Screenshot](img/message_example.jpeg)
+![Regular Log Message](img/message_example.jpeg)
 
 !!! tip
     You can set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_RECEIVER` environment
@@ -91,3 +93,27 @@ logger.error("foo")
 [^1]:
     You can change level offset by passing `level` to `TelegramHandler`
     while you initialize it.
+
+### Exceptions and Stack Traces
+
+You can also send log of your latest exception and *its
+stacktrace*. Consider the example below:
+
+```python
+try:
+    1 / 0
+except ZeroDivisionError:
+    logger.exception("Divided by zero.")
+```
+
+Division by zero will naturally have `ZeroDivisionError` to
+occur and the exception is caught by `except` blog. If you call
+`logger.exception` here, a complete stack trace as a file will
+be sent to the chat you have defined with the format of reply.
+
+![Stacktrace Log Message](img/stacktrace_example.jpeg)
+
+!!! note
+    Django always wraps exceptions with logger. Thus, you will
+    always receive stacktrace if an `Exception` occurs in a
+    Django codebase.
