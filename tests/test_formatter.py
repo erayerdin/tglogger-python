@@ -1,4 +1,4 @@
-import importlib.util
+import os
 import re
 
 import pytest
@@ -24,10 +24,6 @@ def formatter_message(log_record_factory, telegram_formatter):
     return telegram_formatter.format(log_record)
 
 
-@pytest.mark.skipif(
-    importlib.util.find_spec("django") is not None,
-    reason="test_django will run on the environment.",
-)
 class TestTelegramFormatter:
     def test_banner_hashtag(self, formatter_message):
         assert "#tglogger" in formatter_message
