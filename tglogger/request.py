@@ -22,10 +22,7 @@ def _send_stack_trace(
         return None
 
     stack_trace_file = tempfile.NamedTemporaryFile(
-        mode="w+b",
-        prefix="stacktrace-{}".format(uuid.uuid1()),
-        suffix=".txt",
-        delete=False,
+        mode="w+b", prefix="stacktrace-{}".format(uuid.uuid1()), suffix=".txt"
     )
 
     tback = record.exc_info[1].__traceback__
