@@ -129,8 +129,9 @@ jobs:
     - pip install -r requirements.txt
     - pip install -r dev.requirements.txt
     - pip install tgcli --upgrade
+    - pip install "django>=2.2<2.3" --upgrade
     script:
-    - pytest --cov-config .coveragerc --cov tglogger tests/
+    - pytest --ds django_project.settings --cov-config .coveragerc --cov tglogger tests/
     - codecov
     after_success:
     - tgcli bot send -r $TELEGRAM_RECEIVER message "🍾 \`tglogger\` coverage has passed."

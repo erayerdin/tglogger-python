@@ -1,7 +1,19 @@
 import logging
 import os
+import uuid
 
 from tglogger import request
+
+_old_factory = logging.getLogRecordFactory()
+
+
+def _log_record_uuid(*args, **kwargs):
+    record = _old_factory(*args, **kwargs)
+    record.uuid = uuid.uuid4()
+    return record
+
+
+logging.setLogRecordFactory(_log_record_uuid)
 
 
 class TelegramHandler(logging.Handler):

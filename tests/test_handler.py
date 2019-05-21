@@ -1,14 +1,16 @@
-import importlib.util
+import os
+import uuid
 
 import pytest
 import requests
 
 
+def test_log_record_uuid(log_record_factory):
+    log_record = log_record_factory()
+    assert isinstance(log_record.uuid, uuid.UUID)
+
+
 class TestTelegramHandler:
-    @pytest.mark.skipif(
-        importlib.util.find_spec("django") is not None,
-        reason="Will be covered in test_django.",
-    )
     def test_emit_return_type(self, telegram_handler, log_record_factory):
         log_record = log_record_factory()
 
