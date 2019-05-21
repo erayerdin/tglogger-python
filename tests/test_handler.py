@@ -1,7 +1,13 @@
 import os
+import uuid
 
 import pytest
 import requests
+
+
+def test_log_record_uuid(log_record_factory):
+    log_record = log_record_factory()
+    assert isinstance(log_record.uuid, uuid.UUID)
 
 
 class TestTelegramHandler:
