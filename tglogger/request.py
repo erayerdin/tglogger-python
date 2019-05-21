@@ -1,5 +1,6 @@
 import logging
 import tempfile
+import textwrap
 import traceback
 import typing
 import uuid
@@ -33,13 +34,21 @@ def _send_stack_trace(
 
     stack_trace_file.seek(0)
 
+    message = textwrap.dedent(
+        """
+    #{uuid_hex}
+    Exception raised by **{exception_class_name}**.
+    """
+    ).strip()
+
     reply_id = generic_info_response.json()["result"]["message_id"]
     response = requests.post(
         url=_BASE_URL.format(token=handler.bot_token, method="sendDocument"),
         data={
             "chat_id": chat_id,
-            "caption": "Exception raised by **{}**.".format(
-                record.exc_info[0].__name__
+            "caption": message.format(
+                uuid_hex=record.uuid.hex,
+                exception_class_name=record.exc_info[0].__name__,
             ),
             "parse_mode": "markdown",
             "reply_to_message_id": reply_id,

@@ -18,6 +18,7 @@ class TelegramFormatter(logging.Formatter):
     _TEMPLATE = dedent(
         """
     #tglogger
+    #{uuid_hex}
     *Logger Name:* {logger_name}
     *System Date:* {system_date} ({zone})
     *Level:* #{level_name}
@@ -34,6 +35,7 @@ class TelegramFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord):
         data = dict()
 
+        data["uuid_hex"] = record.uuid.hex
         data["logger_name"] = record.name
 
         if os.environ.get("DJANGO_SETTINGS_MODULE", None):
