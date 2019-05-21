@@ -28,6 +28,9 @@ class TestTelegramFormatter:
     def test_banner_hashtag(self, formatter_message):
         assert "#tglogger" in formatter_message
 
+    def test_uuid(self, formatter_message):
+        assert re.search("#[a-z0-9]{32}\n", formatter_message)
+
     def test_logger_name(self, formatter_message):
         assert "*Logger Name:* example.logger" in formatter_message
 
