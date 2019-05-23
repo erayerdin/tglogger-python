@@ -47,6 +47,21 @@ def log_record_factory(
 
 
 @pytest.fixture(scope="module")
+def exception_log_record(log_record_factory):
+    from collections import namedtuple
+
+    return log_record_factory(
+        exc_info=(
+            Exception,
+            Exception("foo"),
+            namedtuple(
+                "fake_tb", ("tb_frame", "tb_lasti", "tb_lineno", "tb_next")
+            ),  # ref: https://stackoverflow.com/a/49561567/2926992
+        )
+    )
+
+
+@pytest.fixture(scope="module")
 def telegram_formatter() -> tglogger.formatter.TelegramFormatter:
     return tglogger.formatter.TelegramFormatter()
 
