@@ -24,30 +24,31 @@ def formatter_message_factory(
     return factory
 
 
-class TestTelegramFormatterDjango:
-    def test_system_date_use_tz(self, formatter_message_factory, settings):
-        assert (
-            re.search(
-                r"\*System Date:\* .* \(Europe/Istanbul\)\n",
-                formatter_message_factory(),
-            )
-            is not None
+def test_system_date_use_tz(formatter_message_factory, settings):
+    assert (
+        re.search(
+            r"\*System Date:\* .* \(Europe/Istanbul\)\n",
+            formatter_message_factory(),
         )
+        is not None
+    )
 
-    def test_system_date_not_use_tz(self, formatter_message_factory, settings):
-        assert (
-            re.search(
-                r"\*System Date:\* .* \(No Timezone\)\n",
-                formatter_message_factory(USE_TZ=False),
-            )
-            is not None
-        )
 
-    def test_system_date_time_zone(self, formatter_message_factory, settings):
-        assert (
-            re.search(
-                r"\*System Date:\* .* \(UTC\)\n",
-                formatter_message_factory(TIME_ZONE="UTC"),
-            )
-            is not None
+def test_system_date_not_use_tz(formatter_message_factory, settings):
+    assert (
+        re.search(
+            r"\*System Date:\* .* \(No Timezone\)\n",
+            formatter_message_factory(USE_TZ=False),
         )
+        is not None
+    )
+
+
+def test_system_date_time_zone(formatter_message_factory, settings):
+    assert (
+        re.search(
+            r"\*System Date:\* .* \(UTC\)\n",
+            formatter_message_factory(TIME_ZONE="UTC"),
+        )
+        is not None
+    )
