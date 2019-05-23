@@ -9,7 +9,7 @@ import tglogger.request
 
 @pytest.fixture
 def send_log_responses(
-    telegram_handler, log_record_factory, requests_mock, read_test_resource
+    telegram_handler, exception_log_record, requests_mock, read_test_resource
 ):
     send_message_rule = re.compile(
         "https:\/\/api.telegram.org\/bot.+\/sendMessage"
@@ -29,16 +29,7 @@ def send_log_responses(
         text=read_test_resource("message.response.json").read(),
     )
 
-    log_record = log_record_factory(
-        exc_info=(
-            Exception,
-            Exception("foo"),
-            namedtuple(
-                "fake_tb", ("tb_frame", "tb_lasti", "tb_lineno", "tb_next")
-            ),  # ref: https://stackoverflow.com/a/49561567/2926992
-        )
-    )
-    return tglogger.request.send_log(telegram_handler, log_record, 1)
+    return tglogger.request.send_log(telegram_handler, exception_log_record, 1)
 
 
 class TestSendLogReturn:
