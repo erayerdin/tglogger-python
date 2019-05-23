@@ -1,5 +1,6 @@
 import uuid
 
+import pytest
 import requests
 
 
@@ -17,3 +18,12 @@ def test_handler_emit_return_type(telegram_handler, log_record_factory):
 
     for value in responses.values():
         assert isinstance(value, requests.Response) or value is None
+
+
+def test_invalid_bot_exception():
+    from tglogger.handler import TelegramHandler, InvalidBotError
+
+    with pytest.raises(InvalidBotError):
+        handler = TelegramHandler(
+            bot_token="foo", receiver="bar"
+        )  # no such bot
