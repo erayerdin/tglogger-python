@@ -1,5 +1,7 @@
-import logging, pytest
+import logging
 import typing
+
+import pytest
 
 
 @pytest.fixture(scope="module")
