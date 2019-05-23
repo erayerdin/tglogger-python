@@ -9,7 +9,7 @@ LOGGING = {
     "formatters": {
         # ...
         "telegram_formatter": {
-            "()", "tglogger.formatter.TelegramFormatter"
+            "()": "tglogger.formatter.TelegramFormatter"
         },
         # ...
     },
@@ -17,7 +17,7 @@ LOGGING = {
     "handlers": {
         # ...
         "telegram_handler": {
-            "class": "tglogger.formatter.TelegramHandler",
+            "class": "tglogger.handler.TelegramHandler",
             "formatter": "telegram_formatter",
             "bot_token": "BOT_TOKEN",  # replace it with your token
             "receiver": "CHAT_ID",  # chat id to send message to
