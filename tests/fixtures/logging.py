@@ -1,23 +1,7 @@
-import json
 import logging
 import typing
 
 import pytest
-import requests_mock
-
-import tglogger.formatter
-import tglogger.handler
-import tglogger.request
-
-
-@pytest.fixture
-def read_test_resource(request):
-    def factory(file_name: str, mode="r"):
-        file = open("tests/resources/{}".format(file_name), mode)
-        request.addfinalizer(lambda: file.close())
-        return file
-
-    return factory
 
 
 @pytest.fixture(scope="module")
@@ -47,19 +31,15 @@ def log_record_factory(
 
 
 @pytest.fixture(scope="module")
-def telegram_formatter() -> tglogger.formatter.TelegramFormatter:
-    return tglogger.formatter.TelegramFormatter()
+def exception_log_record(log_record_factory):
+    from collections import namedtuple
 
-
-@pytest.fixture(scope="module")
-def telegram_handler(telegram_formatter) -> tglogger.handler.TelegramHandler:
-    handler = tglogger.handler.TelegramHandler(bot_token="1", receiver="2")
-    handler.setFormatter(telegram_formatter)
-    return handler
-
-
-@pytest.fixture(scope="module")
-def telegram_logger(telegram_handler, telegram_formatter) -> logging.Logger:
-    logger = logging.getLogger("test logger")
-    logger.addHandler(telegram_handler)
-    return logger
+    return log_record_factory(
+        exc_info=(
+            Exception,
+            Exception("foo"),
+            namedtuple(
+                "fake_tb", ("tb_frame", "tb_lasti", "tb_lineno", "tb_next")
+            ),  # ref: https://stackoverflow.com/a/49561567/2926992
+        )
+    )
