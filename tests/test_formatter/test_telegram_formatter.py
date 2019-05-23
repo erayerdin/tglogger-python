@@ -1,27 +1,4 @@
-import os
 import re
-
-import pytest
-
-from tglogger import formatter
-
-
-def test_reformat_markdown_safe_underscore():
-    example = "foo_bar_baz"
-    reformatted = formatter.reformat_markdown_safe(example)
-    assert reformatted == "foo\_bar\_baz"
-
-
-def test_reformat_markdown_safe_asterisk():
-    example = "foo*bar*baz"
-    reformatted = formatter.reformat_markdown_safe(example)
-    assert reformatted == "foo\*bar\*baz"
-
-
-@pytest.fixture(scope="module")
-def formatter_message(log_record_factory, telegram_formatter):
-    log_record = log_record_factory()
-    return telegram_formatter.format(log_record)
 
 
 class TestTelegramFormatter:
