@@ -66,13 +66,18 @@ def send_log(
     """
     Sends log to Telegram chat.
     """
+
+    data = {"chat_id": chat_id, "parse_mode": "markdown"}
+
+    if record.exc_info is None:
+        method = "sendMessage"
+        data["text"] = handler.format(record)
+    else:
+        method = "sendDocument"
+        data["caption"] = handler.format(record)
+
     response = requests.post(
-        url=_BASE_URL.format(token=handler.bot_token, method="sendMessage"),
-        data={
-            "chat_id": chat_id,
-            "text": handler.format(record),
-            "parse_mode": "markdown",
-        },
+        url=_BASE_URL.format(token=handler.bot_token, method=method), data=data
     )
 
     return response
