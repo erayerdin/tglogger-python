@@ -14,10 +14,7 @@ def test_handler_emit_return_type(telegram_handler, log_record_factory):
     log_record = log_record_factory()
 
     responses = telegram_handler.emit(log_record)
-    assert isinstance(responses, dict)
-
-    for value in responses.values():
-        assert isinstance(value, requests.Response) or value is None
+    assert isinstance(responses, requests.Response) or value is None
 
 
 def test_invalid_bot_exception():

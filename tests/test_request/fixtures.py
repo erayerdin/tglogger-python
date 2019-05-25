@@ -9,7 +9,7 @@ import tglogger.request
 
 
 @pytest.fixture
-def send_log_responses(
+def send_log_response(
     telegram_handler, exception_log_record, requests_mock, read_test_resource
 ):
     send_message_rule = re.compile(
@@ -37,33 +37,10 @@ def send_log_responses(
 
 
 @pytest.fixture
-def generic_info_response(send_log_responses):
-    return send_log_responses["generic_info_response"]
+def send_log_request(send_log_response):
+    return send_log_response.request
 
 
 @pytest.fixture
-def generic_info_request(generic_info_response):
-    return generic_info_response.request
-
-
-@pytest.fixture
-def generic_info_request_body(generic_info_request):
-    return parse_qs(generic_info_request.body)
-
-
-# Stack Trace
-
-
-@pytest.fixture
-def stack_trace_response(send_log_responses):
-    return send_log_responses["stack_trace_response"]
-
-
-@pytest.fixture
-def stack_trace_request(stack_trace_response):
-    return stack_trace_response.request
-
-
-@pytest.fixture
-def stack_trace_request_body(stack_trace_request):
-    return stack_trace_request.body
+def send_log_request_body(send_log_request):
+    return parse_qs(send_log_request.body)

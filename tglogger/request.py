@@ -66,7 +66,7 @@ def send_log(
     """
     Sends log to Telegram chat.
     """
-    generic_info_response = requests.post(
+    response = requests.post(
         url=_BASE_URL.format(token=handler.bot_token, method="sendMessage"),
         data={
             "chat_id": chat_id,
@@ -75,12 +75,4 @@ def send_log(
         },
     )
 
-    stack_trace_response = _send_stack_trace(
-        generic_info_response, handler, record, chat_id
-    )
-
-    return {
-        "generic_info_response": generic_info_response,
-        "stack_trace_response": stack_trace_response,
-        "django_settings_response": None,
-    }
+    return response
