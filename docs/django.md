@@ -9,7 +9,7 @@ LOGGING = {
     "formatters": {
         # ...
         "telegram_formatter": {
-            "()": "tglogger.formatter.TelegramFormatter"
+            "()": "tglogger.formatter.TelegramFormatter",
         },
         # ...
     },
@@ -17,6 +17,7 @@ LOGGING = {
     "handlers": {
         # ...
         "telegram_handler": {
+            "level": "ERROR",
             "class": "tglogger.handler.TelegramHandler",
             "formatter": "telegram_formatter",
             "bot_token": "BOT_TOKEN",  # replace it with your token
@@ -41,9 +42,9 @@ this behavior by simply passing `level` to the handler in the `LOGGING`
 # assuming you have set TELEGRAM_BOT_TOKEN and TELEGRAM_RECEIVER environment variables
 "handlers": {
     "telegram_handler": {
+        "level": "INFO",
         "class": "tglogger.formatter.TelegramHandler",
         "formatter": "telegram_formatter",
-        "level", "INFO",
     },
 },
 ```
