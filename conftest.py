@@ -5,5 +5,6 @@ pytest_plugins = (
     "tests.fixtures.resource",
     #
     "tests.test_request.fixtures",  # request fixtures
+    "tests.test_resource.fixtures",  # resource fixtures
     "tests.test_formatter.fixtures",  # formatter fixtures
 )
