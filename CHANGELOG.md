@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+ - `meta-*.zip` file to log message.
+
+### Changed
+ - Now stacktrace file is sent inside *meta* zip file that is attached to main
+ log message.
+
+### Removed
+ - Feature of sending stacktrace file as a separate message.
+
 ## [v0.1.1a1] - 2019-05-24
 ### Added
  - `TelegramHandler` now validates bot on initialization

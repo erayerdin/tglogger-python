@@ -1,3 +1,6 @@
+import tempfile
+import uuid
+
 import pytest
 
 
@@ -9,3 +12,11 @@ def read_test_resource(request):
         return file
 
     return factory
+
+
+@pytest.fixture
+def temp_file():
+    file = tempfile.NamedTemporaryFile(prefix=uuid.uuid4().hex, suffix=".txt")
+    file.write(b"foo")
+    yield file
+    file.close()
