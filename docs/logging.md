@@ -70,8 +70,8 @@ The message format is as below:
 {message}
 ```
 
- - **Banner Hashtag**: Each message has `#tglogger` banner hashtag so that
- you can filter only log messages in a chat.
+ - **Banner Hashtag** (#tglogger): Each message has `#tglogger` banner hashtag
+ so that you can filter only log messages in a chat.
  - **uuid_hex:** It is a unique ID of a `LogRecord`. This is especially
  useful when you want to filter a `LogRecord`'s general info and stack
  trace message.
@@ -146,22 +146,32 @@ handler = TelegramHandler(level=logging.INFO)
 !!! warning
     You might want to check [bot request throttling on Telegram](limitations.md#telegram-bot-request-throttle).
 
-### Exceptions and Stack Traces
+### Log Messages with Meta Info
 
-You can receive stack trace as a file to spot where the error occured
-and follow back to debug your program. All you have to do is to send
-your exception inside `except` block:
+In some occasions, `tglogger` sends a zip file attached to the message. This
+zip file is generated when an exception is captured or `DJANGO_SETTINGS_MODULE`
+is set.
+
+This generated zip file, for now, only contains stack trace about exception.
+However, it is planned to contain information about Django settings and
+requet information as well.
+
+Normally, logger captures the exception under an `except` block as below:
 
 ```python
 try:
     1 / 0  # cannot divide to 0, will fail
 except ZeroDivisionError:
     logger.exception("Divided by zero.")  # or any message you'd like
+    # as you can see, we do not pass either instance or class of ZeroDivisionError
+    # logger obtains it itself
 ```
 
-![Stack Trace Message](img/stacktrace_example.png)
+Then we receive meta zip as attached to a log message.
+
+![Meta Message](img/meta_example.png)
 
 
 !!! note
-    This behavior is wrapped in Django. If your Django application
-    raises Exception on runtime, you will receive stacktrace.
+    Capturing exception behavior is wrapped in Django. If your Django
+    application raises Exception on runtime, you will receive stacktrace.
