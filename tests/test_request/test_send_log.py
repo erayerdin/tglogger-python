@@ -21,6 +21,19 @@ def test_request_body_parse_mode(send_log_request_body):
 
 
 def test_request_body_text(send_log_request_body):
-    assert (
-        "text" in send_log_request_body or "caption" in send_log_request_body
-    )
+    assert "text" in send_log_request_body
+
+
+# Exception
+
+
+def test_exception_request_url(send_log_exception_request):
+    assert send_log_exception_request.url.endswith("sendDocument")
+
+
+def test_exception_request_caption(send_log_exception_request_body):
+    assert b'name="caption"' in send_log_exception_request_body
+
+
+def test_exception_request_document(send_log_exception_request_body):
+    assert b'name="document"' in send_log_exception_request_body
