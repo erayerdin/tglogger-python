@@ -25,7 +25,7 @@ setup(
     include_package_data=True,
     keywords="telegram messaging communication logging",
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: Apache Software License",
