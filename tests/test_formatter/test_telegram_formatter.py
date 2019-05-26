@@ -26,18 +26,18 @@ def test_message_path_and_line(formatter_message):
 
 
 def test_message_function_or_method(formatter_message):
-    assert "*Function/Method:* _foo\_bar\_baz_" in formatter_message
+    assert r"*Function/Method:* _foo\_bar\_baz_" in formatter_message
 
 
 def test_message_thread(formatter_message):
     assert re.search(
-        "\*Thread ID and Name:\* \\\[[0-9]+\] .*\n", formatter_message
+        r"\*Thread ID and Name:\* \\\[[0-9]+\] .*\n", formatter_message
     )
 
 
 def test_message_process(formatter_message):
     assert re.search(
-        "\*Process ID and Name:\* \\\[[0-9]+\] .*\n", formatter_message
+        r"\*Process ID and Name:\* \\\[[0-9]+\] .*\n", formatter_message
     )
 
 

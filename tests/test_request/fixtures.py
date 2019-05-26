@@ -1,17 +1,34 @@
+import os
 import re
+import zipfile
 from urllib.parse import parse_qs
 
 import pytest
 
 import tglogger.request
 
-# send_log
+
+# build_zip_file
+@pytest.fixture
+def meta_archive(temp_file, exception_log_record):
+    archive_file = tglogger.request.build_zip_file(
+        exception_log_record, temp_file
+    )
+    archive = zipfile.ZipFile(archive_file, mode="r")
+    yield archive
+    archive.close()
 
 
 @pytest.fixture
-def send_log_responses(
-    telegram_handler, exception_log_record, requests_mock, read_test_resource
-):
+def meta_first_file(meta_archive):
+    first_file = meta_archive.open(meta_archive.namelist()[0])
+    yield first_file
+    first_file.close()
+
+
+# send_log
+@pytest.fixture
+def request_api_mock(requests_mock, read_test_resource):
     send_message_rule = re.compile(
         "https:\/\/api.telegram.org\/bot.+\/sendMessage"
     )
@@ -30,6 +47,17 @@ def send_log_responses(
         text=read_test_resource("message.response.json").read(),
     )
 
+
+@pytest.fixture
+def send_log_response(telegram_handler, log_record_factory, request_api_mock):
+    log_record = log_record_factory()
+    return tglogger.request.send_log(telegram_handler, log_record, 1)
+
+
+@pytest.fixture
+def send_log_exception_response(
+    telegram_handler, exception_log_record, request_api_mock
+):
     return tglogger.request.send_log(telegram_handler, exception_log_record, 1)
 
 
@@ -37,33 +65,20 @@ def send_log_responses(
 
 
 @pytest.fixture
-def generic_info_response(send_log_responses):
-    return send_log_responses["generic_info_response"]
+def send_log_request(send_log_response):
+    return send_log_response.request
 
 
 @pytest.fixture
-def generic_info_request(generic_info_response):
-    return generic_info_response.request
+def send_log_request_body(send_log_request):
+    return parse_qs(send_log_request.body)
 
 
 @pytest.fixture
-def generic_info_request_body(generic_info_request):
-    return parse_qs(generic_info_request.body)
-
-
-# Stack Trace
+def send_log_exception_request(send_log_exception_response):
+    return send_log_exception_response.request
 
 
 @pytest.fixture
-def stack_trace_response(send_log_responses):
-    return send_log_responses["stack_trace_response"]
-
-
-@pytest.fixture
-def stack_trace_request(stack_trace_response):
-    return stack_trace_response.request
-
-
-@pytest.fixture
-def stack_trace_request_body(stack_trace_request):
-    return stack_trace_request.body
+def send_log_exception_request_body(send_log_exception_request):
+    return send_log_exception_request.body
