@@ -10,13 +10,9 @@ import requests
 _BASE_URL = "https://api.telegram.org/bot{token}/{method}"
 
 
-def _build_stack_trace_file(
-    record: logging.LogRecord
-) -> tempfile.NamedTemporaryFile:
+def _build_stack_trace_file(record: logging.LogRecord) -> tempfile.NamedTemporaryFile:
     stack_trace_file = tempfile.NamedTemporaryFile(
-        mode="w+b",
-        prefix="stacktrace-{}".format(record.uuid.hex),
-        suffix=".txt",
+        mode="w+b", prefix="stacktrace-{}".format(record.uuid.hex), suffix=".txt",
     )
 
     tback = record.exc_info[1].__traceback__

@@ -10,9 +10,7 @@ pytestmark = pytest.mark.skipIf(
 
 
 @pytest.fixture
-def formatter_message_factory(
-    settings, log_record_factory, telegram_formatter
-):
+def formatter_message_factory(settings, log_record_factory, telegram_formatter):
     def factory(USE_TZ=True, TIME_ZONE="Europe/Istanbul"):
         settings.USE_TZ = USE_TZ
         settings.TIME_ZONE = TIME_ZONE
@@ -27,8 +25,7 @@ def formatter_message_factory(
 def test_system_date_use_tz(formatter_message_factory, settings):
     assert (
         re.search(
-            r"\*System Date:\* .* \(Europe/Istanbul\)\n",
-            formatter_message_factory(),
+            r"\*System Date:\* .* \(Europe/Istanbul\)\n", formatter_message_factory(),
         )
         is not None
     )

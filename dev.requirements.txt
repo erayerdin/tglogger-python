@@ -5,3 +5,6 @@ codecov==2.0.15
 mkdocs==1.0.4
 mkdocs-material==4.2.0
 pytest-django==3.4.8
+flake8==3.7.9
+black==19.10b0
+pre-commit==1.21.0

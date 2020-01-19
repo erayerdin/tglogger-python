@@ -33,6 +33,7 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Framework :: Django :: 1.11",
         "Framework :: Django :: 2.0",
         "Framework :: Django :: 2.1",
@@ -46,5 +47,6 @@ setup(
     license="Apache License 2.0",
     tests_require=TEST_DEPS,
     install_requires=DEPS,
+    extras_require={"django": ["django>=1.11&<=2.2"]},
     zip_safe=False,
 )

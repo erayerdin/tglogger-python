@@ -14,13 +14,11 @@ def test_handler_emit_return_type(telegram_handler, log_record_factory):
     log_record = log_record_factory()
 
     responses = telegram_handler.emit(log_record)
-    assert isinstance(responses, requests.Response) or value is None
+    assert isinstance(responses, requests.Response)
 
 
 def test_invalid_bot_exception():
     from tglogger.handler import TelegramHandler, InvalidBotError
 
     with pytest.raises(InvalidBotError):
-        handler = TelegramHandler(
-            bot_token="foo", receiver="bar"
-        )  # no such bot
+        TelegramHandler(bot_token="foo", receiver="bar")  # no such bot
