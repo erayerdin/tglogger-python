@@ -1,5 +1,5 @@
 """
-This module contains a handler for Telegram.
+This module contains a handler for sending log with Telegram.
 """
 
 import logging
