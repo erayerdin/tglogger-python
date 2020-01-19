@@ -7,7 +7,7 @@ import os
 from textwrap import dedent
 
 
-def reformat_markdown_safe(text: str) -> str:
+def _reformat_markdown_safe(text: str) -> str:
     """
     Sanitizes the provided text of special markdown characters. `_` and `*` characters
     are sanitized.
@@ -65,9 +65,9 @@ class TelegramFormatter(logging.Formatter):
             data["zone"] = "No Timezone"
 
         data["level_name"] = record.levelname.lower()
-        data["path"] = reformat_markdown_safe(record.pathname)
+        data["path"] = _reformat_markdown_safe(record.pathname)
         data["lineno"] = record.lineno
-        data["func_name"] = reformat_markdown_safe(record.funcName)
+        data["func_name"] = _reformat_markdown_safe(record.funcName)
         data["thread_id"] = record.thread
         data["thread_name"] = record.threadName
 
