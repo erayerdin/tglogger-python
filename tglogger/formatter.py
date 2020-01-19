@@ -1,12 +1,17 @@
-# todo - 2 class doc
+"""
+This module contains a formatter for logging with Telegram.
+"""
 
 import logging
 import os
 from textwrap import dedent
 
 
-def reformat_markdown_safe(text: str) -> str:
-    # todo - 2 function doc
+def _reformat_markdown_safe(text: str) -> str:
+    """
+    Sanitizes the provided text of special markdown characters. `_` and `*` characters
+    are sanitized.
+    """
 
     text = text.replace("_", "\_")  # noqa
     text = text.replace("*", "\*")  # noqa
@@ -14,7 +19,10 @@ def reformat_markdown_safe(text: str) -> str:
 
 
 class TelegramFormatter(logging.Formatter):
-    # todo 3 - class doc
+    """
+    A `logging.Formatter` implementation for sending log records with Telegram.
+    """
+
     _TEMPLATE = dedent(
         """
     #tglogger
@@ -57,9 +65,9 @@ class TelegramFormatter(logging.Formatter):
             data["zone"] = "No Timezone"
 
         data["level_name"] = record.levelname.lower()
-        data["path"] = reformat_markdown_safe(record.pathname)
+        data["path"] = _reformat_markdown_safe(record.pathname)
         data["lineno"] = record.lineno
-        data["func_name"] = reformat_markdown_safe(record.funcName)
+        data["func_name"] = _reformat_markdown_safe(record.funcName)
         data["thread_id"] = record.thread
         data["thread_name"] = record.threadName
 

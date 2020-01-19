@@ -24,7 +24,7 @@ def _build_stack_trace_file(record: logging.LogRecord) -> tempfile.NamedTemporar
     return stack_trace_file
 
 
-def build_zip_file(
+def _build_zip_file(
     record: logging.LogRecord, *files: typing.List[tempfile.NamedTemporaryFile]
 ) -> tempfile.NamedTemporaryFile:
     temp_file = tempfile.NamedTemporaryFile(
@@ -42,7 +42,7 @@ def build_zip_file(
 
 def _build_meta_file(record: logging.LogRecord) -> tempfile.NamedTemporaryFile:
     stack_trace_file = _build_stack_trace_file(record)
-    meta_zip_file = build_zip_file(record, stack_trace_file)
+    meta_zip_file = _build_zip_file(record, stack_trace_file)
     stack_trace_file.close()
     return meta_zip_file
 
