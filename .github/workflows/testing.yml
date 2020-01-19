@@ -13,6 +13,7 @@ jobs:
     env:
       PY_VERSION: ${{ matrix.python-version }}
       DJ_VERSION: ${{ matrix.django-version }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     steps:
     - uses: actions/checkout@v1
