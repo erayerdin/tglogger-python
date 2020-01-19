@@ -21,6 +21,4 @@ def test_invalid_bot_exception():
     from tglogger.handler import TelegramHandler, InvalidBotError
 
     with pytest.raises(InvalidBotError):
-        TelegramHandler(
-            bot_token="foo", receiver="bar"
-        )  # no such bot
+        TelegramHandler(bot_token="foo", receiver="bar")  # no such bot

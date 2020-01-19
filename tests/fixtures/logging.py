@@ -11,7 +11,7 @@ def logger() -> logging.Logger:
 
 @pytest.fixture(scope="module")
 def log_record_factory(
-    logger: logging.Logger
+    logger: logging.Logger,
 ) -> typing.Callable[[], logging.LogRecord]:
     def factory(**kwargs) -> logging.LogRecord:
         internal_factory = logging.getLogRecordFactory()
