@@ -1,15 +1,49 @@
 # tglogger
 
-[![PyPI](https://img.shields.io/pypi/v/tglogger.svg?style=flat-square&logo=python&logoColor=white)][pypi_url] [![PyPI](https://img.shields.io/pypi/dm/tglogger.svg?style=flat-square&logo=python&logoColor=white)][pypi_url] [![PyPI](https://img.shields.io/pypi/pyversions/tglogger.svg?style=flat-square&logo=python&logoColor=white)][pypi_url] [![PyPI - Django Version](https://img.shields.io/pypi/djversions/tglogger.svg?style=flat-square)][pypi_url] [![PyPI](https://img.shields.io/pypi/l/tglogger.svg?style=flat-square)][pypi_url] [![](https://img.shields.io/readthedocs/tglogger.svg?style=flat-square)](https://tglogger.readthedocs.io/en/latest/) [![Telegram](https://img.shields.io/badge/telegram-%40erayerdin-%2332afed.svg?style=flat-square&logo=telegram&logoColor=white)](https://t.me/erayerdin) [![Code Style](https://img.shields.io/badge/style-black-000000.svg?style=flat-square)](https://github.com/ambv/black)
+[![PyPI - Version][version_badge_url]][pypi_url]
+[![PyPI - Status][status_badge_url]][pypi_url]
+[![PyPI - License][license_badge_url]](LICENSE.txt)
+![PyPI - Python][python_badge_url]
+![PyPI - Django][django_badge_url]
+![Downloads - Month][dlmonth_badge_url]
 
 ![](resources/recording.gif)
 
 `tglogger` contains utilities to build and redirect logs to Telegram chat via a bot.
 
-|                | Build                                                                                                                                                          | Coverage |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| **Master**      | [![Travis (.com) master](https://img.shields.io/travis/com/erayerdin/tglogger/master.svg?style=flat-square&logo=travis&logoColor=white)][travis_url]           | [![Codecov (master)](https://img.shields.io/codecov/c/github/erayerdin/tglogger/master.svg?style=flat-square)][covecov_url] |
-| **Development** | [![Travis (.com) development](https://img.shields.io/travis/com/erayerdin/tglogger/development.svg?style=flat-square&logo=travis&logoColor=white)][travis_url] | [![Codecov (development)](https://img.shields.io/codecov/c/github/erayerdin/tglogger/master.svg?style=flat-square)][covecov_url] |
+<!-- Meta Links Start -->
+
+[version_badge_url]: https://img.shields.io/pypi/v/tglogger?label=version&logoColor=white&style=flat-square
+[status_badge_url]: https://img.shields.io/pypi/status/tglogger?style=flat-square
+[license_badge_url]: https://img.shields.io/pypi/l/tglogger?style=flat-square
+[python_badge_url]: https://img.shields.io/pypi/pyversions/tglogger?color=3572a2&label=%20&logo=python&logoColor=FECE3D&style=flat-square
+[django_badge_url]: https://img.shields.io/pypi/djversions/tglogger?color=092e20&label=%20&logo=django&logoColor=white&style=flat-square
+[dlmonth_badge_url]: https://img.shields.io/pypi/dm/tglogger?label=dl%2Fmonth&style=flat-square
+
+[pypi_url]: https://pypi.org/project/tglogger/
+
+<!-- Meta Links End -->
+
+| | Build | Coverage |
+|-|---|---|
+| **master** | [![Linux - Master][linux_master_badge_url]][linux_master_url] | [![Coverage - Master][codecov_master_badge_url]][codecov_master_url] |
+| **development** | [![Linux - Development][linux_development_badge_url]][linux_development_url] | [![Coverage - Development][codecov_development_badge_url]][codecov_development_url] |
+
+<!-- Build Links Start -->
+
+[linux_development_badge_url]: https://img.shields.io/github/workflow/status/erayerdin/tglogger/testing/development?logo=linux&logoColor=white&style=flat-square
+[linux_master_badge_url]: https://img.shields.io/github/workflow/status/erayerdin/tglogger/testing/master?logo=linux&logoColor=white&style=flat-square
+
+[codecov_development_badge_url]: https://img.shields.io/codecov/c/gh/erayerdin/tglogger/development?style=flat-square
+[codecov_master_badge_url]: https://img.shields.io/codecov/c/gh/erayerdin/tglogger/master?style=flat-square
+
+[linux_development_url]: https://github.com/erayerdin/tglogger/actions?query=workflow%3A%22Build+and+Distribute%22+branch%3Adevelopment
+[linux_master_url]: https://github.com/erayerdin/tglogger/actions?query=workflow%3A%22Build+and+Distribute%22+branch%3Amaster
+
+[codecov_development_url]: https://codecov.io/gh/erayerdin/tglogger/branch/development
+[codecov_master_url]: https://codecov.io/gh/erayerdin/tglogger/branch/master
+
+<!-- Build Links End -->
 
 ## Installing
 
@@ -53,7 +87,3 @@ logger.error("foo")  # you will receive a message by your bot
 ## Documentation
 
 Documentation has more information about how to use `tglogger`. Refer to the [documentation](https://tglogger.readthedocs.io/en/latest/).
-
-[covecov_url]: https://codecov.io/gh/erayerdin/tglogger
-[pypi_url]: https://pypi.org/project/tglogger/
-[travis_url]: https://travis-ci.com/erayerdin/tglogger
