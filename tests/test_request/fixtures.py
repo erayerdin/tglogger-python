@@ -7,10 +7,10 @@ import pytest
 import tglogger.request
 
 
-# build_zip_file
+# _build_zip_file
 @pytest.fixture
 def meta_archive(temp_file, exception_log_record):
-    archive_file = tglogger.request.build_zip_file(exception_log_record, temp_file)
+    archive_file = tglogger.request._build_zip_file(exception_log_record, temp_file)
     archive = zipfile.ZipFile(archive_file, mode="r")
     yield archive
     archive.close()
