@@ -1,3 +1,7 @@
+"""
+This module contains a handler for Telegram.
+"""
+
 import logging
 import os
 import uuid
@@ -17,11 +21,19 @@ logging.setLogRecordFactory(_log_record_uuid)
 
 
 class InvalidBotError(Exception):
+    """
+    This error is raised if the provided bot token is invalid.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class TelegramHandler(logging.Handler):
+    """
+    A `logging.Handler` implementation for sending log records with Telegram.
+    """
+
     def __init__(
         self,
         level=logging.ERROR,
@@ -41,9 +53,7 @@ class TelegramHandler(logging.Handler):
         response = request.requests.get(url)
 
         if not response.ok:
-            raise InvalidBotError(
-                "No bot exists with given token. (Hidden for security.)"
-            )
+            raise InvalidBotError("No bot exists with provided token.")
 
     def emit(self, record):
         return request.send_log(self, record, self.receiver)
