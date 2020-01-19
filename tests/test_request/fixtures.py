@@ -1,4 +1,3 @@
-import os
 import re
 import zipfile
 from urllib.parse import parse_qs
@@ -30,10 +29,10 @@ def meta_first_file(meta_archive):
 @pytest.fixture
 def request_api_mock(requests_mock, read_test_resource):
     send_message_rule = re.compile(
-        "https:\/\/api.telegram.org\/bot.+\/sendMessage"
+        r"https:\/\/api.telegram.org\/bot.+\/sendMessage"
     )
     send_document_rule = re.compile(
-        "https:\/\/api.telegram.org\/bot.+\/sendDocument"
+        r"https:\/\/api.telegram.org\/bot.+\/sendDocument"
     )
 
     requests_mock.register_uri(

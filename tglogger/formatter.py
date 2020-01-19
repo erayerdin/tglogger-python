@@ -8,8 +8,8 @@ from textwrap import dedent
 def reformat_markdown_safe(text: str) -> str:
     # todo - 2 function doc
 
-    text = text.replace("_", "\_")
-    text = text.replace("*", "\*")
+    text = text.replace("_", "\_")  # noqa
+    text = text.replace("*", "\*")  # noqa
     return text
 
 
@@ -30,7 +30,7 @@ class TelegramFormatter(logging.Formatter):
     *Message*
     {message}
     """
-    ).strip()
+    ).strip()  # noqa
 
     def format(self, record: logging.LogRecord):
         data = dict()
