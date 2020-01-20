@@ -154,13 +154,13 @@ is set.
 
 This generated zip file, for now, only contains stack trace about exception.
 However, it is planned to contain information about Django settings and
-requet information as well.
+request information as well.
 
 Normally, logger captures the exception under an `except` block as below:
 
 ```python
 try:
-    1 / 0  # cannot divide to 0, will fail
+    1 / 0  # cannot divide by 0, will fail
 except ZeroDivisionError:
     logger.exception("Divided by zero.")  # or any message you'd like
     # as you can see, we do not pass either instance or class of ZeroDivisionError
