@@ -11,6 +11,11 @@
 
 `tglogger` contains utilities to build and redirect logs to Telegram chat via a bot.
 
+ - It has a formatter for beautiful log messages in Telegram.
+ - It tends to *tag* common logs so that you can easily filter out related log messages.
+ - You can send logs to individuals, channels or groups.
+ - It works with Django (See badges for supported versions).
+
 <!-- Meta Links Start -->
 
 [version_badge_url]: https://img.shields.io/pypi/v/tglogger?label=version&logoColor=white&style=flat-square
