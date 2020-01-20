@@ -47,6 +47,5 @@ setup(
     license="Apache License 2.0",
     tests_require=TEST_DEPS,
     install_requires=DEPS,
-    extras_require={"django": ["django>=1.11&<=2.2"]},
     zip_safe=False,
 )
