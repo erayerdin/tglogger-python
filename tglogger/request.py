@@ -10,13 +10,9 @@ import requests
 _BASE_URL = "https://api.telegram.org/bot{token}/{method}"
 
 
-def _build_stack_trace_file(
-    record: logging.LogRecord
-) -> tempfile.NamedTemporaryFile:
+def _build_stack_trace_file(record: logging.LogRecord) -> tempfile.NamedTemporaryFile:
     stack_trace_file = tempfile.NamedTemporaryFile(
-        mode="w+b",
-        prefix="stacktrace-{}".format(record.uuid.hex),
-        suffix=".txt",
+        mode="w+b", prefix="stacktrace-{}".format(record.uuid.hex), suffix=".txt",
     )
 
     tback = record.exc_info[1].__traceback__
@@ -28,7 +24,7 @@ def _build_stack_trace_file(
     return stack_trace_file
 
 
-def build_zip_file(
+def _build_zip_file(
     record: logging.LogRecord, *files: typing.List[tempfile.NamedTemporaryFile]
 ) -> tempfile.NamedTemporaryFile:
     temp_file = tempfile.NamedTemporaryFile(
@@ -46,7 +42,7 @@ def build_zip_file(
 
 def _build_meta_file(record: logging.LogRecord) -> tempfile.NamedTemporaryFile:
     stack_trace_file = _build_stack_trace_file(record)
-    meta_zip_file = build_zip_file(record, stack_trace_file)
+    meta_zip_file = _build_zip_file(record, stack_trace_file)
     stack_trace_file.close()
     return meta_zip_file
 
@@ -73,7 +69,7 @@ def send_log(
         files = {"document": meta_file}
 
     response = requests.post(
-        url=_BASE_URL.format(token=handler.bot_token, method=method),
+        url=_BASE_URL.format(token=handler._bot_token, method=method),
         data=data,
         files=files,
     )

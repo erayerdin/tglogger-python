@@ -1,4 +1,3 @@
-import os
 import re
 import zipfile
 from urllib.parse import parse_qs
@@ -8,12 +7,10 @@ import pytest
 import tglogger.request
 
 
-# build_zip_file
+# _build_zip_file
 @pytest.fixture
 def meta_archive(temp_file, exception_log_record):
-    archive_file = tglogger.request.build_zip_file(
-        exception_log_record, temp_file
-    )
+    archive_file = tglogger.request._build_zip_file(exception_log_record, temp_file)
     archive = zipfile.ZipFile(archive_file, mode="r")
     yield archive
     archive.close()
@@ -29,12 +26,8 @@ def meta_first_file(meta_archive):
 # send_log
 @pytest.fixture
 def request_api_mock(requests_mock, read_test_resource):
-    send_message_rule = re.compile(
-        "https:\/\/api.telegram.org\/bot.+\/sendMessage"
-    )
-    send_document_rule = re.compile(
-        "https:\/\/api.telegram.org\/bot.+\/sendDocument"
-    )
+    send_message_rule = re.compile(r"https:\/\/api.telegram.org\/bot.+\/sendMessage")
+    send_document_rule = re.compile(r"https:\/\/api.telegram.org\/bot.+\/sendDocument")
 
     requests_mock.register_uri(
         "POST",
