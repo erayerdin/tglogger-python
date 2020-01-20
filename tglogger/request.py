@@ -69,7 +69,7 @@ def send_log(
         files = {"document": meta_file}
 
     response = requests.post(
-        url=_BASE_URL.format(token=handler.bot_token, method=method),
+        url=_BASE_URL.format(token=handler._bot_token, method=method),
         data=data,
         files=files,
     )
